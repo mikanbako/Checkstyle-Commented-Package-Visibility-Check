@@ -1,7 +1,7 @@
 Developing...
 
-Commented package visible member checker
+Commented package visibility checker
 
 A plugin of Checkstyle (http://checkstyle.sourceforge.net/) that checks
-whether package visible member is commented. For example, "/* package */".
+whether package visibility is commented. For example, "/* package */".
 
