@@ -2,3 +2,5 @@
 .project
 target
 .~lock*
+.DS_Store
+.settings
