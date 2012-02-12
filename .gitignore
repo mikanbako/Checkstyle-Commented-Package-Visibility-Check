@@ -1,5 +1,9 @@
 .classpath
 .project
+.checkstyle
+.codepro
+.pmd
+.ruleset
 target
 .~lock*
 .DS_Store

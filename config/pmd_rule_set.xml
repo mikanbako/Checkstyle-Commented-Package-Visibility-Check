@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset name="Project Ruleset"
+        xmlns="http://pmd.sf.net/ruleset/1.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+        xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>Ruleset for this project.</description>
+
+    <exclude-pattern>.*/src/test/.*</exclude-pattern>
+
+    <!-- Basic Rules -->
+    <rule ref="rulesets/basic.xml">
+        <exclude name="ForLoopShouldBeWhileLoop" />
+        <exclude name="CollapsibleIfStatements" />
+        <exclude name="AvoidUsingOctalValues" />
+    </rule>
+    <rule ref="rulesets/basic.xml/EmptyCatchBlock">
+        <properties>
+            <property name="allowCommentedBlocks" value="true" />
+        </properties>
+    </rule>
+
+    <!-- Braces Rules -->
+    <rule ref="rulesets/braces.xml" />
+
+    <!-- Clone Rules -->
+    <rule ref="rulesets/clone.xml" />
+
+    <!-- Design Rules -->
+    <rule ref="rulesets/design.xml">
+        <exclude name="AvoidDeeplyNestedIfStmts" />
+        <exclude name="AvoidReassigningParameters" />
+        <exclude name="SwitchDensity" />
+        <exclude name="ConfusingTernary" />
+        <exclude name="ImmutableField" />
+        <exclude name="AssignmentToNonFinalStatic" />
+        <exclude name="MissingBreakInSwitch" />
+        <exclude name="AvoidSynchronizedAtMethodLevel" />
+        <exclude name="EmptyMethodInAbstractClassShouldBeAbstract" />
+        <exclude name="TooFewBranchesForASwitchStatement" />
+    </rule>
+
+    <!-- Finalizer Rules -->
+    <rule ref="rulesets/finalizers.xml" />
+
+    <!-- Import Statement Rules -->
+    <rule ref="rulesets/imports.xml">
+        <exclude name="TooManyStaticImports" />
+    </rule>
+
+    <!-- Naming Rules -->
+    <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable" />
+        <exclude name="LongVariable" />
+        <exclude name="ShortMethodName" />
+        <exclude name="VariableNamingConventions" />
+        <exclude name="AbstractNaming" />
+        <exclude name="BooleanGetMethodName" />
+    </rule>
+
+    <!-- Strict Exception Rules -->
+    <rule ref="rulesets/strictexception.xml/AvoidThrowingNewInstanceOfSameException" />
+
+    <!-- String and StringBuffer Rules -->
+    <rule ref="rulesets/strings.xml">
+        <exclude name="AppendCharacterWithChar" />
+        <exclude name="UseIndexOfChar" />
+        <exclude name="InefficientEmptyStringCheck" />
+        <exclude name="InsufficientStringBufferDeclaration" />
+    </rule>
+
+    <!-- Unused Code Rules -->
+    <rule ref="rulesets/unusedcode.xml">
+        <exclude name="UnusedFormalParameter" />
+    </rule>
+
+    <!-- Type Resolution Rules -->
+    <rule ref="rulesets/typeresolution.xml">
+        <exclude name="LooseCoupling" />
+    </rule>
+</ruleset>
