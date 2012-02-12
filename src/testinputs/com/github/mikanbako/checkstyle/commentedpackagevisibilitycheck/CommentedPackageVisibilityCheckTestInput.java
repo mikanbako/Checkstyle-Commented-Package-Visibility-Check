@@ -1,4 +1,4 @@
-package com.github.mikanbako.javacommentedpackagevisibilitychecker;
+package com.github.mikanbako.checkstyle.commentedpackagevisibilitycheck;
 
 class CommentedPackageVisibilityCheckTestInput
 {
