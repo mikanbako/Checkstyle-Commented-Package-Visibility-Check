@@ -4,7 +4,7 @@
 
   <groupId>com.github.mikanbako.checkstyle.commentedpackagevisibilitycheck</groupId>
   <artifactId>commented-package-visibility-check</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>commented-package-visibility-check</name>
