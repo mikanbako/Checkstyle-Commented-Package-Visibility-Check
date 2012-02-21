@@ -118,6 +118,17 @@ public final class CommentedPackageVisibilityCheck extends AbstractFormatCheck
     }
 
     /**
+     * Get regexp including latter white space.
+     *
+     * @return regexp including latter white space.
+     */
+    private Pattern getRegexpWithLatterWhiteSpace()
+    {
+        return Pattern.compile(String.format("(?:%s)\\s+", getFormat()),
+                getRegexp().flags());
+    }
+
+    /**
      * Check whether comment representing package visibility exists.
      *
      * @param aPackageScopeDefinitionAST AST of definition.
@@ -125,19 +136,21 @@ public final class CommentedPackageVisibilityCheck extends AbstractFormatCheck
     private void checkPackageVisibilityCommentExists(
             DetailAST aPackageScopeDefinitionAST)
     {
+        final Pattern commentPattern = mRequireLatterWhiteSpace
+                ? getRegexpWithLatterWhiteSpace()
+                : getRegexp();
+
+        // Calculate searching range.
         final LineColumn startSearchingPosition =
                 getStartSearchingPosition(aPackageScopeDefinitionAST);
         final LineColumn endSearchingPosition =
                 getEndSearchingPosition(aPackageScopeDefinitionAST);
 
-        final Pattern commentPattern = mRequireLatterWhiteSpace
-                ? Pattern.compile(String.format("(?:%s)\\s+", getFormat()),
-                        getRegexp().flags())
-                : getRegexp();
-
         if (!existsPackageVisibilityComment(
                 commentPattern, startSearchingPosition, endSearchingPosition))
         {
+            // Log that there is not package visibility comment.
+
             final String ident = aPackageScopeDefinitionAST.findFirstToken(
                     TokenTypes.IDENT).getText();
 
@@ -163,6 +176,7 @@ public final class CommentedPackageVisibilityCheck extends AbstractFormatCheck
     private void checkInappropiratePackageVisibilityComment(
             DetailAST aNonPackageVisibilityDefinitionAST)
     {
+        // Calculate searching range.
         final LineColumn startSearchingPosition =
                 getStartSearchingPosition(aNonPackageVisibilityDefinitionAST);
         final LineColumn endSearchingPosition =
@@ -171,6 +185,9 @@ public final class CommentedPackageVisibilityCheck extends AbstractFormatCheck
         if (existsPackageVisibilityComment(
                 getRegexp(), startSearchingPosition, endSearchingPosition))
         {
+            // Log that there are explicit modifier and
+            // package visibility comment.
+
             final String ident = aNonPackageVisibilityDefinitionAST.
                     findFirstToken(TokenTypes.IDENT).getText();
 
@@ -247,6 +264,7 @@ public final class CommentedPackageVisibilityCheck extends AbstractFormatCheck
         final StringBuilder targetStringBuilder = new StringBuilder();
         final String[] targetLines = getLines();
 
+        // Combine lines.
         for (int lineNumber = aStart.getLine(); lineNumber <= aEnd.getLine();
                 lineNumber++)
         {
@@ -258,6 +276,7 @@ public final class CommentedPackageVisibilityCheck extends AbstractFormatCheck
             }
         }
 
+        // Delete redundant characters at last line.
         final int endDeletingCount =
                 (targetLines[aEnd.getLine() - 1].length() - 1)
                     - aEnd.getColumn();
