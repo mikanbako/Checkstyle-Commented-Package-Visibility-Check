@@ -84,6 +84,11 @@ public final class CommentedPackageVisibilityCheck extends AbstractFormatCheck
      */
     private static boolean isModifierPackage(DetailAST aDefinitionAST)
     {
+        // Modifier in interface or annotation is public.
+        if (ScopeUtils.inInterfaceOrAnnotationBlock(aDefinitionAST)) {
+            return false;
+        }
+
         final DetailAST modifierAST =
                 aDefinitionAST.findFirstToken(TokenTypes.MODIFIERS);
         final Scope scope = ScopeUtils.getScopeFromMods(modifierAST);

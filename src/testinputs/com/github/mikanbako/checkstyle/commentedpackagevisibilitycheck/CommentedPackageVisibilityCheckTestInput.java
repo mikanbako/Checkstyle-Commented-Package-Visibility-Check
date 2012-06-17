@@ -19,7 +19,7 @@ class CommentedPackageVisibilityCheckTestInput
 
     interface NoCommentedPackageVisibilityInterface
     {
-
+        void publicMethod();
     }
 
     /* package */ interface CommentedPackageVisibilityInterface
